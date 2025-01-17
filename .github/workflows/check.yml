@@ -8,6 +8,9 @@ jobs:
     - uses: actions/checkout@v4
     - name: Check
       run: |
+        ALLOW_TYPE="Node Gateway"
+        ALLOW_PROTOCOL="LoRaWAN MQTT"
+        
         name=$(jq .name device/Heltec/AB01/AB01.json)
         picture=$(jq .picture device/Heltec/AB01/AB01.json)
         description=$(jq .description device/Heltec/AB01/AB01.json)
@@ -15,11 +18,48 @@ jobs:
         manufacturer=$(jq .manufacturer device/Heltec/AB01/AB01.json)
         type=$(jq .type device/Heltec/AB01/AB01.json)
         protocol=$(jq .protocol device/Heltec/AB01/AB01.json)
-        echo name $name 
-        echo picture $picture 
-        echo description $description 
-        echo demo $demo 
-        echo manufacturer $manufacturer 
-        echo type $type 
-        echo protocol $protocol 
-
+        
+        type_flag=0
+        protocol_flag=0
+        
+        if [ "$name" == "null" ]; then
+          echo "device name not allow null"
+          exit 1
+        fi
+        if [ "$picture" == "null" ]; then
+          echo "device picture not allow null"
+          exit 1
+        fi
+        if [ "$description" == "null" ]; then
+          echo "device description not allow null"
+          exit 1
+        fi
+        if [ "$demo" == "null" ]; then
+          echo "device demo not allow null"
+          exit 1
+        fi
+        if [ "$manufacturer" == "null" ]; then
+          echo "device manufacturer not allow null"
+          exit 1
+        fi
+        
+        for t in $ALLOW_TYPE; do
+          if [ "$type" == "\"$t\"" ]; then
+            type_flag=1
+            break
+          fi
+        done
+        if [ $type_flag -eq 0 ]; then
+          echo "Device type $type not allowed"
+          exit 1
+        fi
+        for t in $ALLOW_PROTOCOL; do
+          if [ "$protocol" == "\"$t\"" ]; then
+            protocol_flag=1
+            break
+          fi
+        done
+        if [ $protocol_flag -eq 0 ]; then
+          echo "Device protocol $protocol not allowed"
+          exit 1
+        fi

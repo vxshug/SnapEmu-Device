@@ -2,7 +2,7 @@
 
 ## How to add?
 
-``txt
+```txt
 /device/Manufacturers Directory/Device Directory/
 ```
 Representing a single device using a json file, 

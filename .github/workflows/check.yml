@@ -1,6 +1,9 @@
 name: Check
 on:
   workflow_dispatch:
+env:
+  ALLOW_TYPE: "Node Gateway"
+  ALLOW_PROTOCOL: "LoRaWAN MQTT"
 jobs:
   check:
     runs-on: ubuntu-24.04
@@ -8,8 +11,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Check
       run: |
-        ALLOW_TYPE="Node Gateway"
-        ALLOW_PROTOCOL="LoRaWAN MQTT"
         function check_file() {
           dirname=$(dirname $1)
           name=$(jq -r .name $1)

@@ -21,10 +21,10 @@ Example: `AB01.json`
 }
 ```
 
-name: Device Name
-picture: Relative path to the device image
-description: Device Description
-demo: Example Tutorial
-manufacturer: Manufacturer Name
-type: Device type, Node or Gateway
-prorocol: Device protocol, LoRaWAN or MQTT
+- name: Device Name
+- picture: Relative path to the device image
+- description: Device Description
+- demo: Example Tutorial
+- manufacturer: Manufacturer Name
+- type: Device type, Node or Gateway
+- prorocol: Device protocol, LoRaWAN or MQTT

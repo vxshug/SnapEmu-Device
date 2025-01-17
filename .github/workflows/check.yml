@@ -8,5 +8,18 @@ jobs:
     - uses: actions/checkout@v4
     - name: Check
       run: |
-        echo hello
+        name=$(jq .name device/Heltec/AB01/AB01.json)
+        picture=$(jq .picture device/Heltec/AB01/AB01.json)
+        description=$(jq .description device/Heltec/AB01/AB01.json)
+        demo=$(jq .demo device/Heltec/AB01/AB01.json)
+        manufacturer=$(jq .manufacturer device/Heltec/AB01/AB01.json)
+        type=$(jq .type device/Heltec/AB01/AB01.json)
+        protocol=$(jq .protocol device/Heltec/AB01/AB01.json)
+        echo name $name 
+        echo picture $picture 
+        echo description $description 
+        echo demo $demo 
+        echo manufacturer $manufacturer 
+        echo type $type 
+        echo protocol $protocol 
 

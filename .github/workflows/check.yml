@@ -1,6 +1,7 @@
 name: Check
 on:
   workflow_dispatch:
+  pull_request:
 env:
   ALLOW_TYPE: "Node Gateway"
   ALLOW_PROTOCOL: "LoRaWAN MQTT"
